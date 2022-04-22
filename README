@@ -1,1 +1,59 @@
-Functional ES6. 
+# Currying y Partial
+
+## Función unaria
+
+Una función es llamada unaria porta toma unn solo argumento, Por ejemplo, la función indentity que se muestra en 6-1, es un función unaria.
+
+## Función binaria
+
+Una función binaria toma dos argumentos, como se en 6-2,como puedes adivinar, hay funciones ternarias que toman tres argumentos, y así sucesivamente. Javascript permite un tipo de función especial que toma un número variable de argumentos, es la llamada función variádica.
+
+## Funciones variádicas
+
+Es una función que toma un numero varible de argumentos, tenemos `arguments` en viejas versiones de javacsript, las cuales podemos usar para capturar la variable número de argumentos. Veamos en 6-3. 
+
+Como puedes ver, `arguments` captura todos los argumentos pasados a la función, el cual es de tipo `Arguments`. Para interarlo, solo lo pasamos por `Array.from(arguments)`, es cual sera de tipo `Array`, y tendremos acceso a todo los metos de ese tipo.
+
+Podemos usar el *Spred Operator* y obtendremos el mismo resultado, pero más elegante. 6-4
+
+## Currying
+
+Sencillamente, es el proceso de convertir una función de n argumentos en una función unaria anidada. Veamos un ejemplo.
+
+
+Tenemos una función llamada ``add``:
+```javascript
+
+const add = (x, y) => x + y
+
+```
+
+
+Es una simple función. We podemos llamarla como `add(1, 1)`,la cual nos devolvera 2, ahora veamos la version currying.
+
+```javascript
+
+const addCurried = x => y  => x + y
+
+```
+
+Podemos llamarla con un solo argumento, y retornara una función donde `x` es almacenado en memoria vía clousure.
+
+Podemos llamarlo para obtener la suma así:
+
+```javascript
+
+addCurried(4)(4) // 8
+
+```
+
+El proceso de convertir una función de dos argumentos a una función que toma una argumento (función unaria) es llamado currying, veamos la definición de la función curry. 6-5
+
+Ahora usemos nuestra función `curry` para convertir la función `add` a nuestra version currying.
+
+```javascript
+
+let autoCurriedAdd = curry(add)
+autoCurriedAdd(2)(2)
+
+```
